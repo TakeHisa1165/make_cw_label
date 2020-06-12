@@ -42,8 +42,9 @@ class InputWindow:
         layout = [
             [sg.MenuBar([["設定",["基本設定"]]], key="menu1")],
             [sg.Text("開始位置", font=("メイリオ", 14)), sg.InputText(size=(5, 1), key="-start_no-", font=("メイリオ", 14)),
-             sg.Text("必要数", font=("メイリオ", 14)), sg.InputText(size=(5, 1), key="-no_of_label-", font=("メイリオ", 14))],
-            [sg.Submit(button_text="ラベル作成", size=(10, 1), pad=((100, 0), (0, 0)))],
+                sg.Text("必要数", font=("メイリオ", 14)), sg.InputText(size=(5, 1), key="-no_of_label-", font=("メイリオ", 14))],
+            [sg.Text("ロット番号", font=("メイリオ", 14)), sg.InputText(size=(17, 1), key="-lot_no-", font=("メイリオ", 14))],
+            [sg.Submit(button_text="ラベル作成", size=(10, 1), pad=((50, 100), (0, 0)),font=("メイリオ", 14)), sg.Submit(button_text="終了", font=("メイリオ", 14))],
             ]
 
 
@@ -61,12 +62,13 @@ class InputWindow:
                 start_no = int(start_no)
                 no_of_label = values["-no_of_label-"]
                 no_of_label = int(no_of_label)
+                lot_no = values["-lot_no-"]
                 path = self.label_file_path
                 input_label.InputToLabel(start_no=start_no, no_of_label=no_of_label, path=path,
-                                         red=self.Red, green=self.Green, blue=self.Blue, sheet_name=self.sheet_name)
+                                        red=self.Red, green=self.Green, blue=self.Blue, sheet_name=self.sheet_name, lot_no = lot_no)
 
 
-            if event == "終了する":
+            if event == "終了":
                 sys.exit()
             # if event == "印刷":
             #     input_to_excel.PrintOut(self.label_file_path)

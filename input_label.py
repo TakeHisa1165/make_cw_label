@@ -3,7 +3,7 @@ import sys
 
 
 class InputToLabel:
-    def __init__(self, start_no, no_of_label, path, red, green, blue, sheet_name):
+    def __init__(self, start_no, no_of_label, path, red, green, blue, sheet_name, lot_no):
         self.path = path
         self.wb = xw.Book(self.path)
         self.ws = self.wb.sheets(sheet_name)
@@ -11,6 +11,7 @@ class InputToLabel:
         self.n = no_of_label
         self.cnt = 0
         self.k = 1
+        self.ws.range('I5').value = lot_no
         self.ws.range((1, 1), (10000, 6)).color = (255, 255, 255)
         self.ws.range((1, 1), (10000, 6)).clear_contents()
         self.red = red
@@ -52,13 +53,13 @@ class InputToLabel:
             if self.row == 0:
                 self.start_row = 1
                 self.start_odd_col(start_row=self.start_row, start_col=self.start_col, cnt=self.cnt, n=self.n,
-                                   ws=self.ws)
+                                    ws=self.ws)
             # スタート段数の特定　1段目以外
             else:
                 self.cal_row = self.row
                 self.start_row = (self.cal_row * 5) + 1
                 self.start_odd_col(start_row=self.start_row, start_col=self.start_col, cnt=self.cnt, n=self.n,
-                                   ws=self.ws)
+                                    ws=self.ws)
 
     def start_even_col(self, k, start_row, cnt, n, ws):
         for k in range(start_row, 26, 5):
@@ -86,7 +87,8 @@ class InputToLabel:
 
 
 if __name__ == '__main__':
-    app = InputToLabel()
-    app.input_to_label()
+    pass
+    # app = InputToLabel()
+    # app.input_to_label()
 
 
