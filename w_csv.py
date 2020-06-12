@@ -8,7 +8,7 @@ class Write_csv:
     def write_csv(self, path_dict):
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         with open('path.csv', 'w', newline='') as csvfile:
-            fieldnames = ["dir_path"]
+            fieldnames = ["dir_path", "Red", "Green", "Blue", "sheet_name"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerow(path_dict)
