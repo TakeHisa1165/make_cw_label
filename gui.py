@@ -1,6 +1,5 @@
 import PySimpleGUI as sg
 import xlwings as xw
-import input_to_excel
 import os
 import csv
 import w_csv
@@ -32,6 +31,7 @@ class InputWindow:
 
         try:
             self.label_file_path = self.dir_path
+            xw.Book(self.label_file_path)
         except AttributeError:
             sg.popup_error('Excelファイルを開けません\n初期設定をやり直してください。')
             SelectFile()
@@ -55,7 +55,7 @@ class InputWindow:
 
             if event is None:
                 print(exit)
-                break
+                sys.exit()
 
             if event == "ラベル作成":
                 start_no = values["-start_no-"]
@@ -113,7 +113,7 @@ class SelectFile:
 
             if event is None:
                 print('exit')
-                break
+                sys.exit()
 
             if event == '設定':
                 path_dict = {}
